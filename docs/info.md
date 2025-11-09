@@ -39,3 +39,16 @@ A **third order digital FIR filter** for TinyTapeout. It has a **configurable cu
 **Reset defaults:**
 - Filter behaviour: **lowpass**
 - Cut-off frequency: **0.125**
+
+## Testing on hardware
+
+1. Connect **DAC + oscilloscope** to output.
+3. Connect **ADC + signal generator** to input.
+4. **Reset** filter.
+5. (Optional) **Configure** filter.
+6. Test filter with **different input signals**.
+
+## Notes
+
+1. Reset before changing config.
+2. Output signal may be slightly cut off.
