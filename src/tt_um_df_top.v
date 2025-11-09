@@ -27,15 +27,31 @@ module tt_um_df_top
 	);
 	
 	wire [7:0] dataout;
+	reg [7:0] sync_ui_in [0:1];
+	reg [3:0] sync_uio_in [0:1];
 	
 	df_digital_filter digital_filter_inst(
 		.CLK(clk),
 		.nRST(rst_n),
-		.enconfig(uio_in[3]),
-		.configin(uio_in[2:0]),
-		.datain(ui_in),
+		.enconfig(sync_uio_in[1][3]),
+		.configin(sync_uio_in[1][2:0]),
+		.datain(sync_ui_in[1]),
 		.dataout(dataout)
 	);
+	
+	always @(posedge clk or negedge rst_n) begin
+		if (rst_n == 1'b0) begin
+			sync_ui_in[0] <= 8'b0;
+			sync_ui_in[1] <= 8'b0;
+			sync_uio_in[0] <= 4'b0;
+			sync_uio_in[1] <= 4'b0;
+		end else begin
+			sync_ui_in[0] <= ui_in;
+			sync_ui_in[1] <= sync_ui_in[0];
+			sync_uio_in[0] <= uio_in[3:0];
+			sync_uio_in[1] <= sync_uio_in[0];
+		end
+	end
 	
 	assign uo_out = dataout;
 	assign uio_out[7:0] = 8'b0;
