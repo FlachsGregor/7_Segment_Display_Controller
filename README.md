@@ -12,7 +12,7 @@ To learn more and get started, visit https://tinytapeout.com.
 
 # TinyTapeout: Digital FIR Filter
 
-Description...
+A **third order digital FIR filter** for TinyTapeout. It has a **configurable cut-off frequency** and **two selectable behaviours**. The sampling frequency is equal to the clock frequency. Results are available after **one clock-cycle**. Data is **unsigned** and the output is bounded to fit 8 bits.
 
 ## Features
 
